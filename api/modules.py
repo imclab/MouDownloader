@@ -42,7 +42,6 @@ def GetPornhubVideoLink(link):
 def GetYoujizzVideoLink(link):
 	'''Get the direct link to the video, return 1 if any errors
 	don't forget the http://'''
-	before_mobile_link = "/videos/"
 	before_title = "<title>"
 	after_title = "</title>"
 	before_direct_link = '<a class="preview_thumb" href="'
