@@ -11,14 +11,21 @@ To add a module just create a function which
 return a list like this: [name_of_video, direct_link_to_video]
 """
 
+def search(list, str):
+	'''searching a string in a list'''
+	for item in list:
+		if (str in item):
+			return item
+	return ''
+
 def GetPornhubVideoLink(link):
 	'''Get the direct link to the video, return 1 if any errors
 	don't forget the http://'''
 	#definiting all variables for the next
 	after_title = " - Pornhub.com</title>"
 	before_title = "<title>"
-	before_direct_link = 'class="play_video_link">\r\n            <div>\r\n                <a href="'
-	after_direct_link = '" style="text'
+	video_type = 'mp4'
+	
 	table = string.maketrans(" &-!@?", "_"*6)
 	#on video link all specials chars are replaced with '_'
 	try:
@@ -36,7 +43,7 @@ def GetPornhubVideoLink(link):
 	except (IOError):
 		return 1
 	#searching the direct link of the video and return it
-	video_link = page[page.find(before_direct_link)+len(before_direct_link):page.find(after_direct_link)]
+	video_link = search(page.split('"'), video_type)
 	return [real_title, video_link]
 
 def GetYoujizzVideoLink(link):
@@ -44,8 +51,7 @@ def GetYoujizzVideoLink(link):
 	don't forget the http://'''
 	before_title = "<title>"
 	after_title = "</title>"
-	before_direct_link = '<a class="preview_thumb" href="'
-	after_direct_link = '.mp4'
+	video_type = 'mp4'
 	
 	mobile_link = link.replace("www", "m")
 	#transforming desktop link to mobile link
@@ -53,12 +59,9 @@ def GetYoujizzVideoLink(link):
 		page = urlopen(mobile_link).read()
 	except (IOError):
 		return 1
-	#loading the page
 	
 	title = page[page.find(before_title)+len(before_title):page.find(after_title)]
-	#getting the title of the video
-	video_link = page[page.find(before_direct_link)+len(before_direct_link):page.find(after_direct_link)+len(after_direct_link)]
-	#getting the direct link to the video
+	video_link = search(page.split('"'), video_type)
 	
 	return [title, video_link]
 
