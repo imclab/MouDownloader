@@ -18,6 +18,13 @@ def search(list, str):
 			return item
 	return ''
 
+def GetMp3LinkFromMelodySheep(link):
+	page = urlopen(link).read()
+	items = page.split('"')
+	download_link = search(items, "mp3")
+	name = link.split("/")[-1]+".mp3"
+	return [name, download_link]
+
 def GetPornhubVideoLink(link):
 	'''Get the direct link to the video, return 1 if any errors
 	don't forget the http://'''
@@ -44,7 +51,7 @@ def GetPornhubVideoLink(link):
 		return 1
 	#searching the direct link of the video and return it
 	video_link = search(page.split('"'), video_type)
-	return [real_title, video_link]
+	return [real_title+".mp4", video_link]
 
 def GetYoujizzVideoLink(link):
 	'''Get the direct link to the video, return 1 if any errors
@@ -63,5 +70,5 @@ def GetYoujizzVideoLink(link):
 	title = page[page.find(before_title)+len(before_title):page.find(after_title)]
 	video_link = search(page.split('"'), video_type)
 	
-	return [title, video_link]
+	return [title+".mp4", video_link]
 
