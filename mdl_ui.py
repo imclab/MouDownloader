@@ -21,7 +21,7 @@ class MyFrame(wx.Frame):
 	def __init__(self, *args, **kwds):
 		kwds["style"] = wx.DEFAULT_FRAME_STYLE
 		wx.Frame.__init__(self, *args, **kwds)
-		self.label_1 = wx.StaticText(self, -1, "Enter pornhub/youjizz video link :")
+		self.label_1 = wx.StaticText(self, -1, "Enter melodysheep/pornhub/youjizz video link :")
 		self.output = wx.StaticText(self, -1, "")
 		self.xinput = wx.TextCtrl(self, -1, "")
 		self.enter = wx.Button(self, -1, "Download!")
@@ -31,7 +31,7 @@ class MyFrame(wx.Frame):
 		self.Bind(wx.EVT_BUTTON, self.download, self.enter)
 
 	def __set_properties(self):
-		self.SetTitle("Free PornHub Video Downloader")
+		self.SetTitle("FreeDownloader")
 		self.output.SetLabel("Wait if its not responding")
 
 	def __do_layout(self):
@@ -57,13 +57,15 @@ class MyFrame(wx.Frame):
 		try:
 			link = self.xinput.GetValue()
 			if ("pornhub" in link):
-				video_link = GetPornhubVideoLink(link)
+				Flink = GetPornhubVideoLink(link)
 			elif ("youjizz" in link):
-				video_link = GetYoujizzVideoLink(link)
+				Flink = GetYoujizzVideoLink(link)
+			elif ("melodysheep" in link):
+				Flink = GetMp3LinkFromMelodySheep(link)
 			else:
 				print("Incorrect link")
-			download(video_link[1], video_link[0]+'.mp4')
-			self.output.SetLabel("Downloaded! : %s" % video_link[0])
+			download(Flink[1], Flink[0])
+			self.output.SetLabel("Downloaded! : %s" % Flink[0])
 		except:
 			self.output.SetLabel("Error, check the link or the internet connection")
 		event.Skip()
