@@ -6,7 +6,7 @@ from sys import stdout, argv
 from api.download import *
 from api.modules import *
 
-__version__ = "1.1"
+__version__ = "2.0"
 
 __all__ = ("main")
 __doc__ = '''
@@ -43,25 +43,28 @@ Press enter to continue...
 			print("This is not a valid link don't forget the 'http://'")
 			return 1
 	except (IndexError):
-		link = raw_input("Enter pornhub/youjizz video link (don't forget http://): ")
+		link = raw_input("Enter pornhub/youjizz/melodysheep link (don't forget http://): ")
 	print("Getting link...")
 	
 	if ("pornhub" in link):
 		print("pornhub detected")
-		video_link = GetPornhubVideoLink(link)
+		Flink = GetPornhubVideoLink(link)
+	elif ("melodysheep" in link):
+		Flink = GetMp3LinkFromMelodySheep(link)
+	
 	elif ("youjizz" in link):
 		print("youjizz detected")
-		video_link = GetYoujizzVideoLink(link)
+		Flink = GetYoujizzVideoLink(link)
 	else:
 		print("Incorrect link")
 	
-	if (video_link == 1):
+	if (Flink == 1):
 		print("Check your internet connection or your link")
 		return 1
 	del link
-	print("Found:\n%s\n%s\n\nDownloading video... this may take a while." % (video_link[0][:40], video_link[1]))
+	print("Found:\n%s\n%s\n\nDownloading file... this may take a while." % (Flink[0][:40], Flink[1]))
 	try:
-		download(video_link[1], video_link[0]+'.mp4')
+		download(Flink[1], Flink[0])
 	except (IOError):
 		return 1
 	return 0
