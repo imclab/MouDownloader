@@ -19,7 +19,10 @@ def search(list, str):
 	return ''
 
 def GetMp3LinkFromMelodySheep(link):
-	page = urlopen(link).read()
+	try:
+		page = urlopen(link).read()
+	except IOError:
+		return 1
 	items = page.split('"')
 	download_link = search(items, "mp3")
 	name = link.split("/")[-1]+".mp3"
