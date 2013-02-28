@@ -21,7 +21,7 @@ class MyFrame(wx.Frame):
 	def __init__(self, *args, **kwds):
 		kwds["style"] = wx.DEFAULT_FRAME_STYLE
 		wx.Frame.__init__(self, *args, **kwds)
-		self.label_1 = wx.StaticText(self, -1, "Enter melodysheep/pornhub/youjizz video link :")
+		self.label_1 = wx.StaticText(self, -1, "Enter melodysheep/pornhub/mixturecloud/youjizz video link :")
 		self.output = wx.StaticText(self, -1, "")
 		self.xinput = wx.TextCtrl(self, -1, "")
 		self.enter = wx.Button(self, -1, "Download!")
@@ -62,6 +62,8 @@ class MyFrame(wx.Frame):
 				Flink = GetYoujizzVideoLink(link)
 			elif ("melodysheep" in link):
 				Flink = GetMp3LinkFromMelodySheep(link)
+			elif ("mixturecloud" in link):
+				Flink = GetMixtureDirectLink(link)
 			else:
 				print("Incorrect link")
 			download(Flink[1], Flink[0])
