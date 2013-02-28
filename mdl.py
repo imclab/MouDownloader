@@ -20,7 +20,7 @@ This is the console version
 def main():
 	"""
 Example:
-Pornhub/Youjizz video link (don't forget http://): http://www.*****.com/view_video.php?viewkey=******
+Pornhub/Youjizz/melodysheep/mixturecloud video link (don't forget http://): http://www.*****.com/view_video.php?viewkey=******
 Getting link...
 Found:
 name_here
@@ -43,7 +43,7 @@ Press enter to continue...
 			print("This is not a valid link don't forget the 'http://'")
 			return 1
 	except (IndexError):
-		link = raw_input("Enter pornhub/youjizz/melodysheep link (don't forget http://): ")
+		link = raw_input("Enter mixturecloud/pornhub/youjizz/melodysheep link (don't forget http://): ")
 	print("Getting link...")
 	
 	if ("pornhub" in link):
@@ -51,7 +51,10 @@ Press enter to continue...
 		Flink = GetPornhubVideoLink(link)
 	elif ("melodysheep" in link):
 		Flink = GetMp3LinkFromMelodySheep(link)
-	
+	elif ("mixturecloud" in link):
+		print("Mixturecloud detected")
+		Flink = GetMixtureDirectLink(link)
+		
 	elif ("youjizz" in link):
 		print("youjizz detected")
 		Flink = GetYoujizzVideoLink(link)
