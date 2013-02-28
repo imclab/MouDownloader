@@ -18,6 +18,17 @@ def search(list, str):
 			return item
 	return ''
 
+def GetMixtureDirectLink(link):
+	page = urlopen(link).read()
+	page = page.replace("<h1>Download</h1>", "")
+	title = page[page.find("<h1>")+len("<h1>"):page.find("</h1>")]
+	file_format = title.split(".")[-1]
+	download_link = ""
+	for item in page.split('"'):
+		if (("http://" in item) and item.endswith(".%s" % file_format)):
+			download_link = item
+	return [title, download_link]
+
 def GetMp3LinkFromMelodySheep(link):
 	try:
 		page = urlopen(link).read()
