@@ -29,7 +29,7 @@ def GetMixtureDirectLink(link):
 			download_link = item
 	return [title, download_link]
 
-def GetMp3LinkFromMelodySheep(link):
+def GetMp3LinkFromBandCamp(link):
 	try:
 		page = urlopen(link).read()
 	except IOError:
