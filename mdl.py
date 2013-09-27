@@ -43,14 +43,14 @@ Press enter to continue...
 			print("This is not a valid link don't forget the 'http://'")
 			return 1
 	except (IndexError):
-		link = raw_input("Enter mixturecloud/pornhub/youjizz/melodysheep link (don't forget http://): ")
+		link = raw_input("Enter mixturecloud/pornhub/youjizz/Bandcamp link (don't forget http://): ")
 	print("Getting link...")
 	
 	if ("pornhub" in link):
 		print("pornhub detected")
 		Flink = GetPornhubVideoLink(link)
-	elif ("melodysheep" in link):
-		Flink = GetMp3LinkFromMelodySheep(link)
+	elif ("bandcamp" in link):
+		Flink = GetMp3LinkFromBandCamp(link)
 	elif ("mixturecloud" in link):
 		print("Mixturecloud detected")
 		Flink = GetMixtureDirectLink(link)
