@@ -61,7 +61,7 @@ class MyFrame(wx.Frame):
 			elif ("youjizz" in link):
 				Flink = GetYoujizzVideoLink(link)
 			elif ("bandcamp" in link):
-				Flink = GetMp3LinkFromMelodySheep(link)
+				Flink = GetMp3LinkFromBandCamp(link)
 			elif ("mixturecloud" in link):
 				Flink = GetMixtureDirectLink(link)
 			else:
