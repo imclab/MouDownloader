@@ -35,7 +35,7 @@ def GetMp3LinkFromMelodySheep(link):
 	except IOError:
 		return 1
 	items = page.split('"')
-	download_link = search(items, "mp3")
+	download_link = search(items, "=mp3")
 	name = link.split("/")[-1]+".mp3"
 	return [name, download_link]
 
